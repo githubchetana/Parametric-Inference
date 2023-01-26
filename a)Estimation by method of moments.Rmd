@@ -1,0 +1,58 @@
+---
+title: "Estimation by method of moments."
+author: "Chetana Jamadar"
+date: "2023-01-03"
+output: html_document
+---
+
+1. Generate a random sample of size n = 100 from Binomial distribution with parameters 
+(n = 6,p = 0.86)Obtain method of moment estimates of n and p based on your sample.
+```{r}
+n=6
+p=0.86
+x=rbinom(100,n,p)
+m=mean(x)
+p_hat=m/n;p_hat
+q_hat=1-p_hat;q_hat
+
+```
+
+2. Generate random sample of size n = 100 from Gamma distribution, with pdf is given by pdf is given
+Take α = 7andβ = 4 Obtain method of moment estimates of αandβ based on your sample
+
+```{r}
+alpha=7;beta=4
+x1=rgamma(100,alpha,1/beta);
+m1=mean(x1)
+m2=mean(x1^2)
+v=var(x1)
+beta_hat=v/m1;beta_hat
+alpha_hat=m1/beta_hat;alpha_hat
+```
+3. consider a random sample of size n = 20 given below from Beta distribution of first kind with pdf
+is
+0.133904 0.224011 0.062282 0.122690 0.051213
+0.620577 0.000650 0.271087 0.827109 0.929479
+0.561905 0.160865 0.362565 0.001039 0.883135
+0.393477 0.990179 0.045737 0.243155 0.080471
+Obtain estimates of a,b based on your sample using method of moments.
+```{r}
+x1=c(0.133904,0.224011,0.062282,0.122690,0.051213,0.620577,0.000650,
+0.271087,0.827109, 0.929479,0.561905,0.160865,0.362565,0.001039,
+0.883135,0.393477,0.990179,0.045737,0.243155,0.080471)
+m=mean(x1)
+m1=mean(x1^2)
+v=var(x1)
+a_hat=m*(m-m1)/v;a_hat
+b_hat=(1-m)*(m-m1)/v;b_hat
+```
+4. Generate a random sample of size n = 20 from truncated Poisson distribution, which is truncated
+at point zero and obtained method of moment estimates of parameter θ based on your sample.
+```{r}
+n=20;
+x=rpois(20,1)
+X1=x/(1-exp(-1))
+m1=mean(x1)
+v1=var(x1)
+l_hat=(v1+(m1^2))-m1/(m1);l_hat
+```

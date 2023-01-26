@@ -1,0 +1,86 @@
+---
+title: "Plotting Likelihood function"
+author: "Chetana Jamadar"
+date: "2023-01-03"
+output: html_document
+---
+1. Generate a random sample of size n=50 from Poisson(λ = 5)distribution. Plot a likelihood function
+against the different values of λ and check whether likelihood function attains maxima at
+i)λ = X(sample mean) ii) λ = 5
+```{r}
+n=50
+lambda=5
+x=rpois(n,lambda)
+m=mean(x)
+l_=seq(3,7,length.out =20)
+like.l_=exp(-n*l_)*(l_)^(sum(x))
+plot(l_,like.l_,type="b",col="green",lwd=2,main="Poisson Likelihood")
+abline(v=m,col="green",lwd=2)
+abline(v=lambda,col="red",lwd=2)
+```
+2. Generate a random sample of size n=50 from Bernoulli(P = 0.8) distribution. Plot a likelihood
+function against the different values of P and check whether likelihood function attains maxima
+at
+i)P = X(sample mean) ii) P = 0.8
+```{r}
+P=0.8; n=50;
+x=rbinom(50,1,0.8)
+m=mean(x)
+p_=seq(0.5,0.9,length.out = 30)
+like.p_=(p_)^(sum(x))*(1-p_)^(n-sum(x))
+plot(p_,like.p_,type="b",col="red",lwd=2,main="Bernaulli likelihood")
+abline(v=m,col="green",lwd=2)
+abline(v=P,col="yellow",lwd=2)
+```
+3. Generate a random sample of size n=20 from Normal(µ = 10,σ2 = 1)
+distribution. Plot a likelihood
+function for different values of µ when σ = 1 is known and check whether likelihood function
+attains maxima at
+i)µ = X(sample mean) ii) µ = 10
+```{r}
+mu=10; s=1; n=20
+x=rnorm(20,10,1)
+m=mean(x)
+mu.vals=seq(8,12,length.out=20)
+like.vals=exp((sum(-1/2)*(x-mu.vals)^2))
+plot(mu.vals,like.vals,type="b",col="red",lwd=2,main="Normal likelihood")
+abline(v=m,col="green",lwd=2)
+abline(v=mu,col="yellow",lwd=2)
+
+```
+4. Draw a random of size n=10 from Exponential distribution with mean θ.Plot a likelihood function
+and check whether likelihood function attains maxima at
+i)θ = X ii) θ = X −0.5
+```{r}
+th=1/1.2;n=10
+x=rexp(10,th)
+m1=mean(x)
+m2=mean(x)-0.5
+th.vals=seq(0.2,3,length.out=20)
+like.vals=(1/th.vals)^n*exp(-sum(x)/th.vals)
+plot(th.vals,like.vals,type="b",col="red",lwd=2,
+main="exponential likelihood")
+abline(v=m1,col="green",lwd=2)
+abline(v=m2,col="blue",lwd=2)
+abline(v=th,col="yellow",lwd=2)
+```
+5. Consider a random sample of size n=10 fromU (0,θ) distribution. 2.06874 5.82498 2.65698 3.58650
+2.78196 1.36005 4.49083 5.74037 3.41361 1.36519 Plot a likelihood function and check whether
+likelihood function attains maxima at
+i)θ = 2X ii) θ = X(n)
+```{r}
+th=5.5
+n=10
+x=c(2.06874,5.82498,2.65698,3.58650,2.78196,1.36005,4.49083,5.74037,
+3.41361,1.36519)
+m1=2*mean(x)
+m2=max(x)
+th.vals=seq(2,10,length.out=20)
+like.vals=(1/th.vals)^n
+plot(th.vals,like.vals,type="b",col="red",lwd=2,main="Uniform likelihood")
+abline(v=m1,col="green",lwd=2)
+abline(v=th,col="yellow",lwd=2)
+abline(v=m2,col="blue",lwd=2)
+```
+
+
